@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.eci.arsw.subastauction.controllers;
+package edu.eci.arsw.subastauction.controller;
 
 import java.util.LinkedHashSet;
 import java.util.Set;

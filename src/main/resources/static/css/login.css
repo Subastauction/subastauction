@@ -11,7 +11,7 @@
   
   .form-login {
     width: 400px;
-    height: 340px;
+    height: 380px;
     background: #4e4d4d;
     margin: auto;
     margin-top: 180px;
@@ -35,7 +35,7 @@
     border: 1px solid #017bab;
     margin-bottom: 15px;
     padding: 11px 10px;
-    background: #252323;
+    background: #726c6caf;
     font-size: 14px;
     font-weight: bold;
   }
