@@ -2,13 +2,21 @@ package edu.eci.arsw.subastauction.persistence;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI; 
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import edu.eci.arsw.subastauction.model.Evento;
 
 import edu.eci.arsw.subastauction.model.Usuario;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.bson.Document;
+import org.springframework.stereotype.Service;
+
+@Service
 public class Database {
     private MongoClientURI uri;
     private MongoClient cliente;
@@ -29,6 +37,18 @@ public class Database {
         document.put("phone", usuario.getPhone());
         document.put("date", usuario.getDate());
         document.put("password", usuario.getPassword());
+        collection.insertOne(document);
+    }
+    
+    public void añadirEvento(Evento evento) {
+        cliente = new MongoClient(uri);
+        MongoCollection<Document> collection = basedeDatos.getCollection("Evento");
+        Document document = new Document();
+        document.put("name", evento.getName());
+        document.put("description", evento.getDescription());
+        document.put("startDate", evento.getStartDate());
+        document.put("endDate", evento.getEndDate());
+        document.put("initialOffer", evento.getInitialOffer());
         collection.insertOne(document);
     }
 
@@ -55,6 +75,24 @@ public class Database {
 
         }
         return lg;
+    }
+    
+    public Set<Evento> consultarEventos(){
+        Set<Evento> set = new HashSet<Evento>();
+        MongoCollection<Document> collection = basedeDatos.getCollection("Evento");
+        FindIterable<Document> fi = collection.find();
+        MongoCursor<Document> cursor = fi.iterator();
+        while(cursor.hasNext()){
+            
+            Document doc = cursor.next();
+            String name = doc.getString("name");
+            String description = doc.getString("description");
+            Date startDate = doc.getDate("startDate");
+            Date endDate = doc.getDate("endDate");
+            int initialOffer = doc.getInteger("initialOffer");
+            set.add(new Evento(name, description, startDate, endDate, initialOffer));
+        }
+        return set;
     }
 
     public static void main(String[] args){

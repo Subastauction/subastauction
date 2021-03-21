@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Crear Evento</title>
+    <link rel="stylesheet" href="css/registro.css">
+    <script src="js/app.js"></script>
+  </head>
+  <body>
+    <section class="form-login">
+      <h5>Crear Evento</h5>
+      <form>
+          <input class="controls" id="nombre" type="text" name="Nombre" placeholder="Nombre" required>
+          <input class="controls" id="descripcion" type="text" name="Descripcion" placeholder="Descripcion" required>
+          <input class="controls" id="fechaInicio" type="date" required>
+          <input class="controls" id="fechaFin" type="date" required>
+          <input class="controls" id="ofertaInicial" type="number"  placeholder="Oferta inicial" required>         
+          <input class="buttons" type="button" value="Crear" onclick="controlador.crearEvento()">
+      </form>
+
+    </section>
+
+  </body>
+</html>

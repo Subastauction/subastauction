@@ -2,18 +2,21 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Formulario Login</title>
+    <title>Registrarse</title>
     <link rel="stylesheet" href="css/registro.css">
+    <script src="js/app.js"></script>
   </head>
   <body>
     <section class="form-login">
       <h5>Registrarse</h5>
-      <input class="controls" type="text" name="Nombre" value="" placeholder="Nombre">
-	  <input class="controls" type="text" name="Correo" value="" placeholder="Correo">
-	  <input class="controls" type="text" name="Telefono" value="" placeholder="Telefono">
-	  <input class="controls" type="date">
-      <input class="controls" type="password" name="contrasena" value="" placeholder="Contraseña">
-      <input class="buttons" type="submit" name="" value="Registarse">
+      <form>
+          <input class="controls" id="nombre" type="text" name="Nombre" placeholder="Nombre" required>
+          <input class="controls" id="correo" type="text" name="Correo" placeholder="Correo" required>
+          <input class="controls" id="telefono" type="text" name="Telefono" placeholder="Telefono" required>
+          <input class="controls" id="fecha" type="date" required>
+          <input class="controls" id="password" type="password" name="contrasena" placeholder="Contraseña" required>
+          <input class="buttons" type="button" value="Registarse" onclick="controlador.registrar()">
+      </form>
 
     </section>
 

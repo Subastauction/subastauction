@@ -9,12 +9,15 @@
   
   <body>
     <section class="form-login">
+      <form>
       <h5>Log in</h5>
-      <input class="controls" type="text" name="usuario" value="" placeholder="Usuario">
-      <input class="controls" type="password" name="contrasena" value="" placeholder="Contraseña">
+      <input class="controls" type="text" name="usuario" value="" placeholder="Usuario" required>
+      <input class="controls" type="password" name="contrasena" value="" placeholder="Contraseña" required>
       <p><a href="#">¿Olvido su Contraseña?</a></p>
-      <input class="buttons" type="submit" name="" value="Ingresar">
-      <input onclick="window.location='./registro.html';" class="buttons" type="submit" name="" value="Registrar">
+      <input class="buttons" type="submit" value="Ingresar">
+      </form>
+      <input onclick="window.location='./registro.html';" class="buttons" type="button" value="Registrar">
+      
     </section>
   </body>
 </html>

@@ -5,6 +5,9 @@
  */
 package edu.eci.arsw.subastauction.controller;
 
+import edu.eci.arsw.subastauction.model.Evento;
+import edu.eci.arsw.subastauction.model.Usuario;
+import edu.eci.arsw.subastauction.service.SubastauctionService;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.logging.Level;
@@ -26,12 +29,47 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/subastauction")
 public class SubastauctionAPIController {
 
-	
-	@RequestMapping("/hello") 
-	public String hello(){
-		return "Hello from Rest";
-	}
-	
+    @Autowired
+    SubastauctionService service;
+    
+    @RequestMapping("/hello")
+    public String hello() {
+        return "Hello from Rest";
+    }
+    
+    @RequestMapping(method = RequestMethod.POST)	
+    public ResponseEntity<?> AddNewUser(@RequestBody Usuario newUser){
+        
+        try {
+            service.registrarUsuario(newUser);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception ex) {
+            Logger.getLogger(SubastauctionAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>(ex.getMessage(),HttpStatus.FORBIDDEN);            
+        }        
+    }
+    
+    @RequestMapping(value="/crearEvento", method = RequestMethod.POST)	
+    public ResponseEntity<?> AddNewEvent(@RequestBody Evento newEvent){
+        
+        try {
+            service.crearEvento(newEvent);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception ex) {
+            Logger.getLogger(SubastauctionAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>(ex.getMessage(),HttpStatus.FORBIDDEN);            
+        }        
+    }
+    
+    @RequestMapping(value="/consultarEventos", method = RequestMethod.GET)
+    public ResponseEntity<?> GetAllEvents(){
+        try {
+            return new ResponseEntity<>(service.getAllEvents(),HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            Logger.getLogger(SubastauctionAPIController.class.getName()).log(Level.SEVERE, null, e);
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+        }
+    }
 
 }
 
