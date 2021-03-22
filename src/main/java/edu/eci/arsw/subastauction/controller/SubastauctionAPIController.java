@@ -53,7 +53,7 @@ public class SubastauctionAPIController {
     public ResponseEntity<?> AddNewEvent(@RequestBody Evento newEvent){
         
         try {
-            service.crearEvento(newEvent);
+            service.agregarEvento(newEvent);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception ex) {
             Logger.getLogger(SubastauctionAPIController.class.getName()).log(Level.SEVERE, null, ex);
@@ -64,7 +64,17 @@ public class SubastauctionAPIController {
     @RequestMapping(value="/consultarEventos", method = RequestMethod.GET)
     public ResponseEntity<?> GetAllEvents(){
         try {
-            return new ResponseEntity<>(service.getAllEvents(),HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(service.consultarEventos(),HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            Logger.getLogger(SubastauctionAPIController.class.getName()).log(Level.SEVERE, null, e);
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+        }
+    }
+    
+    @RequestMapping(value="/usuario/{email}", method = RequestMethod.GET)
+    public ResponseEntity<?> GetUserByName(@PathVariable("email") String email ){
+        try {
+            return new ResponseEntity<>(service.findByEmail(email),HttpStatus.ACCEPTED);
         } catch (Exception e) {
             Logger.getLogger(SubastauctionAPIController.class.getName()).log(Level.SEVERE, null, e);
             return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);

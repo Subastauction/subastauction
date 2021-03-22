@@ -1,6 +1,9 @@
 package edu.eci.arsw.subastauction.model;
 
 import java.util.Date;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection="Usuarios")
 public class Usuario {
 
     private String name,email,phone,password;

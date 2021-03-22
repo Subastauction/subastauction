@@ -6,11 +6,9 @@
 package edu.eci.arsw.subastauction.model;
 
 import java.util.Date;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-/**
- *
- * @author StivenVanegas
- */
+@Document(collection="Evento")
 public class Evento {
     private String name, description;
     private Date startDate, endDate;
