@@ -20,7 +20,7 @@ body {
     margin-bottom: 16px;
   }
 
-  .form-login {
+  .font-weight-bold-mb-2{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
