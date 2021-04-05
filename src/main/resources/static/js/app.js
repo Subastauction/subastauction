@@ -92,7 +92,7 @@ var controlador = (function(){
                     "<img src='https://res.cloudinary.com/mhmd/image/upload/v1556485078/shoes-4_vgfjy9.jpg' alt='' class='img-fluid d-block mx-auto mb-3'>" +
                     "<h5>"+name+"</h5>" +
                     "<p class='small text-muted font-italic'>"+description+"</p>" +
-                    "<input onclick=\"window.location='./evento.html?value="+id+"';\"  type='button' value='Registrar'>"+
+                    "<input onclick=\"window.location='./evento.html?value="+id+"';\"  type='button' value='ingresar'>"+
                     "</div>" +
                     "</div>" +
                     "</div>";
