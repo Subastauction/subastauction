@@ -6,7 +6,7 @@
 
 body {
   font-family: arial;
-  background-image: url('fondo.png');
+  background-image: url("fondo.png");
 }
 
 .form-login {
@@ -49,7 +49,7 @@ body {
   margin-bottom: 16px;
 }
 
-.form-login p{
+.form-login p {
   height: 40px;
   text-align: center;
   border-bottom: 1px solid;
