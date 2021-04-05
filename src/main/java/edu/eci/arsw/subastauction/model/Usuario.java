@@ -1,19 +1,34 @@
 package edu.eci.arsw.subastauction.model;
 
 import java.util.Date;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="Usuarios")
 public class Usuario {
-
+    
+    @Id
+    private String id;
+    
     private String name,email,phone,password;
     private Date date;
-    public Usuario(String name, String email, String phone, Date date, String password) {
-        this.name=name;
-        this.email=email;
-        this.date=date;
-        this.phone=phone;
-        this.password=password;
+
+    public Usuario(String id, String name, String email, String phone, String password, Date date) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
+        this.date = date;
+    }
+    
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getPhone() {

@@ -10,6 +10,7 @@ import edu.eci.arsw.subastauction.model.Usuario;
 import edu.eci.arsw.subastauction.persistence.EventoRepository;
 import edu.eci.arsw.subastauction.persistence.UsuarioRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +42,16 @@ public class SubastauctionService {
         } else {
             return usuario;
         }
+    }
+    
+    public Evento findEventById(String id) throws ServiceNotFoundException{
+        Optional<Evento> evento = eventoRepository.findById(id);
+        if(evento.isPresent()){
+            return evento.get();
+        } else {
+            throw new ServiceNotFoundException("Not found evento");
+        }
+        
     }
     
 }

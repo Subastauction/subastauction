@@ -37,7 +37,7 @@ public class SubastauctionAPIController {
         return "Hello from Rest";
     }
     
-    @RequestMapping(method = RequestMethod.POST)	
+    @RequestMapping(value="/registrar/usuario", method = RequestMethod.POST)	
     public ResponseEntity<?> AddNewUser(@RequestBody Usuario newUser){
         
         try {
@@ -49,7 +49,7 @@ public class SubastauctionAPIController {
         }        
     }
     
-    @RequestMapping(value="/crearEvento", method = RequestMethod.POST)	
+    @RequestMapping(value="/crear/evento", method = RequestMethod.POST)	
     public ResponseEntity<?> AddNewEvent(@RequestBody Evento newEvent){
         
         try {
@@ -61,10 +61,20 @@ public class SubastauctionAPIController {
         }        
     }
     
-    @RequestMapping(value="/consultarEventos", method = RequestMethod.GET)
+    @RequestMapping(value="/consultar/eventos", method = RequestMethod.GET)
     public ResponseEntity<?> GetAllEvents(){
         try {
             return new ResponseEntity<>(service.consultarEventos(),HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            Logger.getLogger(SubastauctionAPIController.class.getName()).log(Level.SEVERE, null, e);
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+        }
+    }
+    
+    @RequestMapping(value="/consultar/eventos/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> GetEventById(@PathVariable("id") String id){
+        try {
+            return new ResponseEntity<>(service.findEventById(id),HttpStatus.ACCEPTED);
         } catch (Exception e) {
             Logger.getLogger(SubastauctionAPIController.class.getName()).log(Level.SEVERE, null, e);
             return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);

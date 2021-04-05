@@ -16,9 +16,9 @@ var controlador = (function(){
         
         console.log(data);
         
-        // Local: 'http://localhost:8080/subastauction'
-        // Heroku: 'https://subastauction.herokuapp.com/subastauction'
-        fetch('https://subastauction.herokuapp.com/subastauction', {
+        // Local: 'http://localhost:8080/subastauction/registrar/usuario'
+        // Heroku: 'https://subastauction.herokuapp.com/subastauction/registrar/usuario'
+        fetch('https://subastauction.herokuapp.com/subastauction/registrar/usuario', {
             method: 'POST',
             headers: {
                 "Content-type": "application/json"
@@ -46,9 +46,9 @@ var controlador = (function(){
         data.endDate = fechaFin;
         data.initialOffer = ofertaInicial;
         
-        // Local: 'http://localhost:8080/subastauction/crearEvento'
-        // Heroku: 'https://subastauction.herokuapp.com/subastauction/crearEvento'
-        fetch('https://subastauction.herokuapp.com/subastauction/crearEvento', {
+        // Local: 'http://localhost:8080/subastauction/crear/evento'
+        // Heroku: 'https://subastauction.herokuapp.com/subastauction/crear/evento'
+        fetch('https://subastauction.herokuapp.com/subastauction/crear/evento', {
             method: 'POST',
             headers: {
                 "Content-type": "application/json"
@@ -64,25 +64,29 @@ var controlador = (function(){
     
     var init = function(){
         
-        // Local: 'http://localhost:8080/subastauction/consultarEventos'
-        // Heroku: 'https://subastauction.herokuapp.com/subastauction/consultarEventos'
-        fetch('https://subastauction.herokuapp.com/subastauction/consultarEventos')
+        // Local: 'http://localhost:8080/subastauction/consultar/eventos'
+        // Heroku: 'https://subastauction.herokuapp.com/subastauction/consultar/eventos'
+        fetch('https://subastauction.herokuapp.com/subastauction/consultar/eventos')
             .then(response => response.json())
-            .then(json => viewEvents(json))
+            .then(json => verEventos(json))
             .catch(err => {
                 console.log(err);
             });
         
     };
     
-    var viewEvents = function(json){
+    var verEventos = function(json){
         
         var name;
         var description;
+        var id;
         
         for(var i in json){
+            id = json[i].id;
+            console.log(id);
             name = json[i].name;
             description = json[i].description;
+            
             
             var s = "<div class='col-lg-3 col-md-6 mb-4 mb-lg-0'>" +
                     "<div class='card rounded shadow-sm border-0'>" +
@@ -90,6 +94,7 @@ var controlador = (function(){
                     "<img src='https://res.cloudinary.com/mhmd/image/upload/v1556485078/shoes-4_vgfjy9.jpg' alt='' class='img-fluid d-block mx-auto mb-3'>" +
                     "<h5>"+name+"</h5>" +
                     "<p class='small text-muted font-italic'>"+description+"</p>" +
+                    "<input onclick=\"window.location='./evento.html?value="+id+"';\"  type='button' value='Registrar'>"+
                     "</div>" +
                     "</div>" +
                     "</div>";
@@ -99,10 +104,36 @@ var controlador = (function(){
         
     };
     
+    var getQuerystring = function(name){
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    };
+    
+    var initEvento = function(){
+        var value = getQuerystring('value');
+        // Local: 'http://localhost:8080/subastauction/consultar/eventos/'
+        // Heroku: 'https://subastauction.herokuapp.com/subastauction/consultar/eventos/'
+        fetch('https://subastauction.herokuapp.com/subastauction/consultar/eventos/'+value)
+            .then(response => response.json())
+            .then(json => verEvento(json))
+            .catch(err => {
+                console.log(err);
+            });  
+    };
+    
+    var verEvento = function(json){
+        console.log(json);
+        $("#nombre_evento").text(json.name);
+        $("#descripcion_evento").text(json.description);
+    };
+    
     return{
         registrar: registrar,
         crearEvento: crearEvento,
-        init: init
+        init: init,
+        initEvento: initEvento
     };
     
 })();

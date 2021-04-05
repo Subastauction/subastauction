@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+        <script src="/webjars/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="/webjars/bootstrap/4.6.0/css/bootstrap.min.css" />
+        <script src="js/app.js"></script>
+        <title>Bootstrap 4, from LayoutIt!</title>
+
+    </head>
+    <body onload="controlador.initEvento()">
+
+        <div class="container-fluid py-5">
+            <header class="text-center mb-5">
+                  <h1 class="display-4 font-weight-bold">Subastauction</h1>
+                  <p class="font-italic text-muted mb-0">An awesome Bootstrap 4 cards collection with variant content.</p>
+              </header>
+            
+            <div class="row pb-5 mb-4">
+                <div class="col-md-6">
+                    <h3 id="nombre_evento"></h3>
+                    <img alt="" src="https://res.cloudinary.com/mhmd/image/upload/v1556485078/shoes-4_vgfjy9.jpg" class="img-fluid d-block mx-auto">
+                    <p id="descripcion_evento"></p>
+                </div>
+                <div class="col-md-6">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    Product
+                                </th>
+                                <th>
+                                    Payment Taken
+                                </th>
+                                <th>
+                                    Status
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    1
+                                </td>
+                                <td>
+                                    TB - Monthly
+                                </td>
+                                <td>
+                                    01/04/2012
+                                </td>
+                                <td>
+                                    Default
+                                </td>
+                            </tr>
+                            <tr class="table-active">
+                                <td>
+                                    1
+                                </td>
+                                <td>
+                                    TB - Monthly
+                                </td>
+                                <td>
+                                    01/04/2012
+                                </td>
+                                <td>
+                                    Approved
+                                </td>
+                            </tr>
+                            <tr class="table-success">
+                                <td>
+                                    2
+                                </td>
+                                <td>
+                                    TB - Monthly
+                                </td>
+                                <td>
+                                    02/04/2012
+                                </td>
+                                <td>
+                                    Declined
+                                </td>
+                            </tr>
+                            <tr class="table-warning">
+                                <td>
+                                    3
+                                </td>
+                                <td>
+                                    TB - Monthly
+                                </td>
+                                <td>
+                                    03/04/2012
+                                </td>
+                                <td>
+                                    Pending
+                                </td>
+                            </tr>
+                            <tr class="table-danger">
+                                <td>
+                                    4
+                                </td>
+                                <td>
+                                    TB - Monthly
+                                </td>
+                                <td>
+                                    04/04/2012
+                                </td>
+                                <td>
+                                    Call in to confirm
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table> 
+                    <button type="button" class="btn btn-success">
+                        Button
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
