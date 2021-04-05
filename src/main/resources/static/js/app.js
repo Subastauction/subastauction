@@ -14,7 +14,6 @@ var controlador = (function(){
         data.phone = telefono;
         data.password = password;
         
-        console.log(data);
         
         // Local: 'http://localhost:8080/subastauction/registrar/usuario'
         // Heroku: 'https://subastauction.herokuapp.com/subastauction/registrar/usuario'
@@ -83,7 +82,6 @@ var controlador = (function(){
         
         for(var i in json){
             id = json[i].id;
-            console.log(id);
             name = json[i].name;
             description = json[i].description;
             
@@ -124,7 +122,6 @@ var controlador = (function(){
     };
     
     var verEvento = function(json){
-        console.log(json);
         $("#nombre_evento").text(json.name);
         $("#descripcion_evento").text(json.description);
     };

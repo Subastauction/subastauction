@@ -10,7 +10,10 @@ public class Usuario {
     @Id
     private String id;
     
-    private String name,email,phone,password;
+    private String name;
+    private String email;
+    private String phone;
+    private String password;
     private Date date;
 
     public Usuario(String id, String name, String email, String phone, String password, Date date) {

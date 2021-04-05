@@ -14,9 +14,11 @@ public class Evento {
     
     @Id
     private String id;
-    
-    private String name, description;
-    private Date startDate, endDate;
+ 
+    private String name;
+    private String description;
+    private Date startDate;
+    private Date endDate;
     private int initialOffer;
 
     public Evento(String id, String name, String description, Date startDate, Date endDate, int initialOffer) {
