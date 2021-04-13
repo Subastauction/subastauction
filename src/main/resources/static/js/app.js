@@ -1,18 +1,13 @@
 var controlador = (function(){
     
     var registrar = function(){
-        var nombre = document.getElementById("nombre").value;
-        var correo = document.getElementById("correo").value;
-        var telefono = document.getElementById("telefono").value;
-        var fecha = document.getElementById("fecha").value;
-        var password = document.getElementById("password").value;
         
         var data = {};
-        data.name = nombre;
-        data.email = correo;
-        data.date = fecha;
-        data.phone = telefono;
-        data.password = password;
+        data.name = document.getElementById("nombre").value;
+        data.email = document.getElementById("correo").value;
+        data.date = document.getElementById("fecha").value;
+        data.phone = document.getElementById("telefono").value;
+        data.password = document.getElementById("password").value;
         
         
         // Local: 'http://localhost:8080/subastauction/registrar/usuario'
