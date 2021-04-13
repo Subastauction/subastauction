@@ -10,32 +10,62 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="js/app.js"></script>
+
 </head>
 
 <body onload="controlador.init()">
-<section class="form-login">
     <div class="container py-4">
         <div class="row">
-            <div class="col-3">
-                <header class="text-center mb-5">
-                    <h4 class="font-weight-bold">Subastauction</h4>
-                </header>
-            </div>
-            <div class="col-6">
-                <div class="input-group">
-                    <div class="form-outline">
-                        <input id="search-input" type="search" id="form1" class="form-control" />
-                        <label class="form-label" for="form1">Buscar</label>
+            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-2">
+                        <nav class="menu">
+                            <input id="menu__toggle" type="checkbox" class='menu__toggle'/>
+                            <label for="menu__toggle" class="menu__toggle-label">
+
+                                <svg preserveAspectRatio='xMinYMin' cursor="pointer" height="44px" width="44px"
+                                     viewBox='0 0 24 24'>
+                                    <path d='M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z'/>
+                                </svg>
+                                <svg preserveAspectRatio='xMinYMin' cursor="pointer" height="44px" width="44px"
+                                     viewBox='0 0 24 24'>
+                                    <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/>
+                                </svg>
+
+                            </label>
+                            <ol class='menu__content'>
+                                <li class="menu-item"><a href="#0">Tu cuenta</a></li>
+                                <li class="menu-item"><a href="#0">Tus Subastas</a></li>
+                                <li class="menu-item"><a href="crearEvento.html">Crear Subasta</a></li>
+
+                                <li class="menu-item"><a href="#0">Sobre nosotros</a></li>
+                                <li class="menu-item"><a href="#0">Contactanos</a></li>
+                                <li class="menu-item"><a style="color:red" href="index.html">Cerrar Sesión</a></li>
+
+                            </ol>
+                        </nav>
                     </div>
-                    <button id="search-button" type="button" class="btn btn-primary">
-                        <i class="fas fa-search"></i>
-                    </button>
+                    <div class="col-md-10">
+                        <header class="text-center mb-5">
+                            <h4 class="font-weight-bold">Subastauction</h4>
+                        </header>
+                    </div>
                 </div>
             </div>
-            <div class="col-3">
-                <header class="text-center mb-5">
-                    <h4 class="font-weight-bold">Subastauction</h4>
-                </header>
+            <div class="col-md-8 ">
+                <div class="row">
+                    <div class="col-md-11">
+                        <input type="text" class="form-control search" id="inputPassword2" placeholder="Buscar">
+                    </div>
+                    <div class="col-md-1">
+                        <button type="submit" class="btn btn-primary mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- For Demo Purpose-->
@@ -50,7 +80,5 @@
         </div>
     </div>
     <input onclick="window.location='./crearEvento.html';" class="buttons" type="button" value="Crear Evento">
-
-</section>
 </body>
 </html>
