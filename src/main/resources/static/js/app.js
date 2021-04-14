@@ -11,19 +11,21 @@ var controlador = (function () {
         if (validarEmail(data.email)) {
             if (validarEdad(data.date)) {
                 if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/i.test(data.password)) {
-                    // Local: 'http://localhost:8080/subastauction/registrar/usuario'
-                    // Heroku: 'https://subastauction.herokuapp.com/subastauction/registrar/usuario'
-                    fetch('https://subastauction.herokuapp.com/subastauction/registrar/usuario', {
-                        method: 'POST',
-                        headers: {
-                            "Content-type": "application/json"
-                        },
-                        body: JSON.stringify(data)
-                    })
-                        .then(response => location.href = "principal.html")
-                        .catch(err => {
-                            console.log(err);
-                        });
+                    if(validarDuplicados(data.email)) {
+                        // Local: 'http://localhost:8080/subastauction/registrar/usuario'
+                        // Heroku: 'https://subastauction.herokuapp.com/subastauction/registrar/usuario'
+                        fetch('https://subastauction.herokuapp.com/subastauction/registrar/usuario', {
+                            method: 'POST',
+                            headers: {
+                                "Content-type": "application/json"
+                            },
+                            body: JSON.stringify(data)
+                        })
+                            .then(response => location.href = "principal.html")
+                            .catch(err => {
+                                console.log(err);
+                            });
+                    }
                 }
                 else{
                     document.getElementById('error').innerText = "Contraseña invalida.";
@@ -35,6 +37,16 @@ var controlador = (function () {
             document.getElementById('error').innerText = "Correo invalido.";
         }
     };
+
+    var validarDuplicados=function (email){
+        var duplicado=false;
+        fetch('https://subastauction.herokuapp.com/subastauction/usuario/' + email)
+            .then(response => {
+                document.getElementById('error').innerText = "El usuario ya se encuentra registrado.";
+            })
+            .catch(err => {duplicado=true});
+        return duplicado;
+    }
 
     var validarEdad = function (fecha) {
         var hoy = new Date();
@@ -158,7 +170,7 @@ var controlador = (function () {
                 .then(json => password(json, contrasena))
                 .catch(err => {
                     error();
-                    console.log(err + "hola");
+                    console.log(err);
                 });
         } else {
             document.getElementById('pasw').innerText = "Correo no valido.";
