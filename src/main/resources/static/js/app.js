@@ -141,13 +141,16 @@ var controlador = (function(){
     var error=function (err){
         document.getElementById('pasw').innerText = "El usuario no existe.";
         console.log(err);
+        console.log("re F");
     }
     var password= function(json,contrasena){
+        console.log(json);
         if(json.password == contrasena){
             location.href="principal.html";
         }
         else{
             document.getElementById('pasw').innerText = "Contraseña incorrecta.";
+            console.log("re FFFFF");
         }
     }
 
