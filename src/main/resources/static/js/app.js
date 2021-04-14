@@ -136,13 +136,13 @@ var controlador = (function(){
             .then(response => response.json())
             .then(json => password(json,contrasena))
             .catch(err =>{
+                error();
                 console.log(err+"hola");
             });
     }
 
-    var error=function (err){
+    var error=function (){
         document.getElementById('pasw').innerText = "El usuario no existe.";
-        console.log(err);
         console.log("re F");
     }
     var password= function(json,contrasena){
