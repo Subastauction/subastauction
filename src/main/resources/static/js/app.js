@@ -1,12 +1,9 @@
 var controlador = (function () {
 
-    var globalName="";
-
     var registrar = function () {
         document.getElementById('error').innerText = "";
         var data = {};
         data.name = document.getElementById("nombre").value;
-        globalName=data.name;
         data.email = document.getElementById("correo").value;
         data.date = document.getElementById("fecha").value;
         data.phone = document.getElementById("telefono").value;
@@ -86,7 +83,6 @@ var controlador = (function () {
     };
 
     var init = function () {
-        document.getElementById('name').innerText = "Bienvenido "+globalName+"!";
         // Local: 'http://localhost:8080/subastauction/consultar/eventos'
         // Heroku: 'https://subastauction.herokuapp.com/subastauction/consultar/eventos'
         fetch('https://subastauction.herokuapp.com/subastauction/consultar/eventos')
