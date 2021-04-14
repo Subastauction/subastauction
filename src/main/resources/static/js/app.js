@@ -1,10 +1,12 @@
 var controlador = (function () {
 
+    var globalName="";
 
     var registrar = function () {
         document.getElementById('error').innerText = "";
         var data = {};
         data.name = document.getElementById("nombre").value;
+        globalName=data.name;
         data.email = document.getElementById("correo").value;
         data.date = document.getElementById("fecha").value;
         data.phone = document.getElementById("telefono").value;
@@ -21,7 +23,7 @@ var controlador = (function () {
                         },
                         body: JSON.stringify(data)
                     })
-                        .then(response => console.log("registrado"))
+                        .then(response => location.href = "principal.html")
                         .catch(err => {
                             console.log(err);
                         });
@@ -84,7 +86,7 @@ var controlador = (function () {
     };
 
     var init = function () {
-
+        document.getElementById('name').innerText = "Bienvenido "+globalName+"!";
         // Local: 'http://localhost:8080/subastauction/consultar/eventos'
         // Heroku: 'https://subastauction.herokuapp.com/subastauction/consultar/eventos'
         fetch('https://subastauction.herokuapp.com/subastauction/consultar/eventos')
@@ -169,15 +171,12 @@ var controlador = (function () {
 
     var error = function () {
         document.getElementById('pasw').innerText = "El usuario no existe.";
-        console.log("re F");
     }
     var password = function (json, contrasena) {
-        console.log(json);
         if (json.password == contrasena) {
             location.href = "principal.html";
         } else {
             document.getElementById('pasw').innerText = "Contraseña incorrecta.";
-            console.log("re FFFFF");
         }
     }
 
