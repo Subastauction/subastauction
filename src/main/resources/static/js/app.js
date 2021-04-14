@@ -136,7 +136,7 @@ var controlador = (function(){
             .then(response => response.json())
             .then(json => password(json,contrasena))
             .catch(err =>{
-                console.log(err);
+                console.log(err+"hola");
             });
     }
 
