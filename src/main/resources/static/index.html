@@ -5,16 +5,17 @@
     <meta charset="utf-8">
     <title>Login</title>
     <link rel="stylesheet" href="css/login.css">
+    <script src="js/app.js"></script>
   </head>
   
   <body>
     <section class="form-login">
       <form>
       <h5>Subastauction</h5>
-      <input class="controls" type="text" name="usuario" value="" placeholder="Usuario" required>
-      <input class="controls" type="password" name="contrasena" value="" placeholder="Contraseña" required>
+      <input class="controls" id="usuario" type="text" name="usuario" value="" placeholder="Usuario" required>
+      <input class="controls" id="contrasena" type="password" name="contrasena" value="" placeholder="Contraseña" required>
       <p><a href="#">¿Olvido su Contraseña?</a></p>
-      <input onclick="window.location='./principal.html';" class="buttons" type="button" value="Ingresar">
+      <input onclick="controlador.ingresar()" class="buttons" type="button" value="Ingresar">
       </form>
       <input onclick="window.location='./registro.html';" class="buttons" type="button" value="Registrar">
       

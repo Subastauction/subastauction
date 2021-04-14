@@ -1,5 +1,7 @@
 var controlador = (function(){
+
     
+
     var registrar = function(){
         
         var data = {};
@@ -120,12 +122,33 @@ var controlador = (function(){
         $("#nombre_evento").text(json.name);
         $("#descripcion_evento").text(json.description);
     };
-    
+
+    var ingresar =function(){
+        var usuario = document.getElementById("usuario").value;
+        var contrasena = document.getElementById("contrasena").value;
+
+        // Local: 'http://localhost:8080/subastauction/consultar/eventos/'
+        // Heroku: 'https://subastauction.herokuapp.com/subastauction/consultar/eventos/'
+        fetch('https://subastauction.herokuapp.com/subastauction/usuario/'+usuario)
+            .then(response => response.json())
+            .then(json => password(json,contrasena))
+            .catch(err => {
+                console.log(err);
+            });
+    }
+
+    var password= function(json,contrasena){
+        if(json.password == contrasena){
+            location.href="principal.html";
+        }
+    }
+
     return{
         registrar: registrar,
         crearEvento: crearEvento,
         init: init,
-        initEvento: initEvento
+        initEvento: initEvento,
+        ingresar: ingresar
     };
     
 })();
