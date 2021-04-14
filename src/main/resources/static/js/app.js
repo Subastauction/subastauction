@@ -135,7 +135,9 @@ var controlador = (function(){
         fetch('https://subastauction.herokuapp.com/subastauction/usuario/'+usuario)
             .then(response => response.json())
             .then(json => password(json,contrasena))
-            .catch(err => error(err));
+            .catch(err =>{
+                console.log(err);
+            });
     }
 
     var error=function (err){
