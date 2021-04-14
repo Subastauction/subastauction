@@ -1,6 +1,6 @@
 var controlador = (function(){
 
-    
+
 
     var registrar = function(){
         
@@ -124,6 +124,9 @@ var controlador = (function(){
     };
 
     var ingresar =function(){
+        console.log("hola");
+        document.getElementById('pasw').innerText = "";
+        console.log("ya");
         var usuario = document.getElementById("usuario").value;
         var contrasena = document.getElementById("contrasena").value;
 
@@ -132,14 +135,19 @@ var controlador = (function(){
         fetch('https://subastauction.herokuapp.com/subastauction/usuario/'+usuario)
             .then(response => response.json())
             .then(json => password(json,contrasena))
-            .catch(err => {
-                console.log(err);
-            });
+            .catch(err => error(err));
     }
 
+    var error=function (err){
+        document.getElementById('pasw').innerText = "El usuario no existe.";
+        console.log(err);
+    }
     var password= function(json,contrasena){
         if(json.password == contrasena){
             location.href="principal.html";
+        }
+        else{
+            document.getElementById('pasw').innerText = "Contraseña incorrecta.";
         }
     }
 
