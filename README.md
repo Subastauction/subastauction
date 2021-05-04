@@ -4,9 +4,9 @@
 
 ## Integrantes
 
-- James Alexander Torres Segura.
-- Vanegas Trujillo Janer Stiven.
-- Varon Rojas Daniel Alejandro.
+-  James Alexander Torres Segura.
+-  Vanegas Trujillo Janer Stiven.
+-  Varon Rojas Daniel Alejandro.
 
 [![Deployed to Heroku](https://www.herokucdn.com/deploy/button.png)](https://subastauction.herokuapp.com)
 

@@ -1,7 +1,26 @@
 var controlador = (function () {
 
+    var validarEdad = function (fecha) {
+        var hoy = new Date();
+        var cumpleanos = new Date(fecha);
+        var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+        var m = hoy.getMonth() - cumpleanos.getMonth();
+        if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+            edad--;
+        }
+        if (edad >= 18) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function validarEmail(valor) {
+        return /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(valor);
+    }
+
     var registrar = function () {
-        document.getElementById('error').innerText = "";
+        document.getElementById("error").innerText = "";
         var data = {};
         data.name = document.getElementById("nombre").value;
         data.email = document.getElementById("correo").value;
@@ -28,13 +47,13 @@ var controlador = (function () {
                     }
                 }
                 else{
-                    document.getElementById('error').innerText = "Contraseña invalida.";
+                    document.getElementById("error").innerText = "Contraseña invalida.";
                 }
             } else {
-                document.getElementById('error').innerText = "Tienes que ser mayor de edad.";
+                document.getElementById("error").innerText = "Tienes que ser mayor de edad.";
             }
         } else {
-            document.getElementById('error').innerText = "Correo invalido.";
+            document.getElementById("error").innerText = "Correo invalido.";
         }
     };
 
@@ -48,20 +67,7 @@ var controlador = (function () {
         return duplicado;
     }
 
-    var validarEdad = function (fecha) {
-        var hoy = new Date();
-        var cumpleanos = new Date(fecha);
-        var edad = hoy.getFullYear() - cumpleanos.getFullYear();
-        var m = hoy.getMonth() - cumpleanos.getMonth();
-        if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
-            edad--;
-        }
-        if (edad >= 18) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+
 
     var crearEvento = function () {
 
@@ -188,9 +194,7 @@ var controlador = (function () {
         }
     }
 
-    function validarEmail(valor) {
-        return /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(valor);
-    }
+
 
     return {
         registrar: registrar,

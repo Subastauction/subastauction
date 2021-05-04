@@ -32,7 +32,7 @@ public class SubastauctionAPIController {
     }
     
     @RequestMapping(value="/registrar/usuario", method = RequestMethod.POST)	
-    public ResponseEntity<?> AddNewUser(@RequestBody Usuario newUser){
+    public ResponseEntity<?> addNewUser(@RequestBody Usuario newUser){
         
         try {
             service.registrarUsuario(newUser);
@@ -44,7 +44,7 @@ public class SubastauctionAPIController {
     }
     
     @RequestMapping(value="/crear/evento", method = RequestMethod.POST)	
-    public ResponseEntity<?> AddNewEvent(@RequestBody Evento newEvent){
+    public ResponseEntity<?> addNewEvent(@RequestBody Evento newEvent){
         
         try {
             service.agregarEvento(newEvent);
@@ -56,7 +56,7 @@ public class SubastauctionAPIController {
     }
     
     @RequestMapping(value="/consultar/eventos", method = RequestMethod.GET)
-    public ResponseEntity<?> GetAllEvents(){
+    public ResponseEntity<?> getAllEvents(){
         try {
             return new ResponseEntity<>(service.consultarEventos(),HttpStatus.ACCEPTED);
         } catch (Exception e) {
@@ -66,7 +66,7 @@ public class SubastauctionAPIController {
     }
     
     @RequestMapping(value="/consultar/eventos/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> GetEventById(@PathVariable("id") String id){
+    public ResponseEntity<?> getEventById(@PathVariable("id") String id){
         try {
             return new ResponseEntity<>(service.findEventById(id),HttpStatus.ACCEPTED);
         } catch (Exception e) {
@@ -76,7 +76,7 @@ public class SubastauctionAPIController {
     }
     
     @RequestMapping(value="/usuario/{email}", method = RequestMethod.GET)
-    public ResponseEntity<?> GetUserByName(@PathVariable("email") String email ){
+    public ResponseEntity<?> getUserByName(@PathVariable("email") String email ){
         try {
             return new ResponseEntity<>(service.findByEmail(email),HttpStatus.ACCEPTED);
         } catch (Exception e) {
