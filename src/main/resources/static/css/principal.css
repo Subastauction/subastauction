@@ -32,8 +32,8 @@ a[href]:after {
 }
 
 .menu {
-	position: relative;
 	width: 250px;
+	position: relative;
 }
 
 .menu__content {
