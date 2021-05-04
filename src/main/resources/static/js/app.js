@@ -5,7 +5,7 @@ var controlador = (function () {
         var cumpleanos = new Date(fecha);
         var edad = hoy.getFullYear() - cumpleanos.getFullYear();
         var m = hoy.getMonth() - cumpleanos.getMonth();
-        if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+        if (m < 0 || (m == 0 && hoy.getDate() < cumpleanos.getDate())) {
             edad--;
         }
         if (edad >= 18) {
@@ -33,8 +33,8 @@ var controlador = (function () {
                     if(validarDuplicados(data.email)) {
                         // Local: 'http://localhost:8080/subastauction/registrar/usuario'
                         // Heroku: 'https://subastauction.herokuapp.com/subastauction/registrar/usuario'
-                        fetch('https://subastauction.herokuapp.com/subastauction/registrar/usuario', {
-                            method: 'POST',
+                        fetch("https://subastauction.herokuapp.com/subastauction/registrar/usuario", {
+                            method: "POST",
                             headers: {
                                 "Content-type": "application/json"
                             },
@@ -63,7 +63,7 @@ var controlador = (function () {
             .then(response => {
                 document.getElementById('error').innerText = "El usuario ya se encuentra registrado.";
             })
-            .catch(err => {duplicado=true});
+            .catch((err) => {duplicado=true});
         return duplicado;
     }
 
@@ -86,8 +86,8 @@ var controlador = (function () {
 
         // Local: 'http://localhost:8080/subastauction/crear/evento'
         // Heroku: 'https://subastauction.herokuapp.com/subastauction/crear/evento'
-        fetch('https://subastauction.herokuapp.com/subastauction/crear/evento', {
-            method: 'POST',
+        fetch("https://subastauction.herokuapp.com/subastauction/crear/evento", {
+            method: "POST",
             headers: {
                 "Content-type": "application/json"
             },
@@ -151,7 +151,7 @@ var controlador = (function () {
         var value = getQuerystring('value');
         // Local: 'http://localhost:8080/subastauction/consultar/eventos/'
         // Heroku: 'https://subastauction.herokuapp.com/subastauction/consultar/eventos/'
-        fetch('https://subastauction.herokuapp.com/subastauction/consultar/eventos/' + value)
+        fetch("https://subastauction.herokuapp.com/subastauction/consultar/eventos/" + value)
             .then(response => response.json())
             .then(json => verEvento(json))
             .catch(err => {
@@ -163,6 +163,14 @@ var controlador = (function () {
         $("#nombre_evento").text(json.name);
         $("#descripcion_evento").text(json.description);
     };
+
+    var password = function (json, contrasena) {
+        if (json.password == contrasena) {
+            location.href = "principal.html";
+        } else {
+            document.getElementById('pasw').innerText = "Contraseña incorrecta.";
+        }
+    }
 
     var ingresar = function () {
         document.getElementById('pasw').innerText = "";
@@ -179,20 +187,14 @@ var controlador = (function () {
                     console.log(err);
                 });
         } else {
-            document.getElementById('pasw').innerText = "Correo no valido.";
+            document.getElementById("pasw").innerText = "Correo no valido.";
         }
     }
 
     var error = function () {
-        document.getElementById('pasw').innerText = "El usuario no existe.";
+        document.getElementById("pasw").innerText = "El usuario no existe.";
     }
-    var password = function (json, contrasena) {
-        if (json.password == contrasena) {
-            location.href = "principal.html";
-        } else {
-            document.getElementById('pasw').innerText = "Contraseña incorrecta.";
-        }
-    }
+
 
 
 
