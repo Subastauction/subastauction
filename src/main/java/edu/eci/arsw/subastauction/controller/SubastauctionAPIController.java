@@ -6,6 +6,7 @@
 package edu.eci.arsw.subastauction.controller;
 
 import edu.eci.arsw.subastauction.model.Evento;
+import edu.eci.arsw.subastauction.model.Oferta;
 import edu.eci.arsw.subastauction.model.Usuario;
 import edu.eci.arsw.subastauction.service.SubastauctionService;
 import java.util.logging.Level;
@@ -83,6 +84,18 @@ public class SubastauctionAPIController {
             Logger.getLogger(SubastauctionAPIController.class.getName()).log(Level.SEVERE, null, e);
             return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
         }
+    }
+    
+    @RequestMapping(value="/registrar/oferta", method = RequestMethod.POST)	
+    public ResponseEntity<?> addNewOffer(@RequestBody Oferta newOffer){
+        
+        try {
+            service.registrarOferta(newOffer);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception ex) {
+            Logger.getLogger(SubastauctionAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>(ex.getMessage(),HttpStatus.FORBIDDEN);            
+        }        
     }
 
 }

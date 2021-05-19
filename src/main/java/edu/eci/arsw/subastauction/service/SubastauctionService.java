@@ -6,8 +6,10 @@
 package edu.eci.arsw.subastauction.service;
 
 import edu.eci.arsw.subastauction.model.Evento;
+import edu.eci.arsw.subastauction.model.Oferta;
 import edu.eci.arsw.subastauction.model.Usuario;
 import edu.eci.arsw.subastauction.persistence.EventoRepository;
+import edu.eci.arsw.subastauction.persistence.OfertaRepository;
 import edu.eci.arsw.subastauction.persistence.UsuarioRepository;
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +24,9 @@ public class SubastauctionService {
     
     @Autowired
     EventoRepository eventoRepository;
+    
+    @Autowired
+    OfertaRepository ofertaRepository;
     
     public void registrarUsuario(Usuario usuario){
         usuarioRepository.save(usuario);
@@ -52,6 +57,10 @@ public class SubastauctionService {
             throw new ServiceNotFoundException("Not found evento");
         }
         
+    }
+
+    public void registrarOferta(Oferta newOffer) {
+        ofertaRepository.save(newOffer);
     }
     
 }

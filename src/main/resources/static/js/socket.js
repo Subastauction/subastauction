@@ -42,12 +42,35 @@ var socket = (function (){
         });
     };
     
+    var registrartOferta = function(){
+        var data = {};
+        data.cantidad = document.getElementById("cantidad").value;
+        data.idUsuario = "User";
+        data.idEvento = idsubasta;
+        
+        // Local: 'http://localhost:8080/subastauction/registrar/oferta'
+        // Heroku: 'https://subastauction.herokuapp.com/subastauction/registrar/oferta'
+        fetch("https://subastauction.herokuapp.com/subastauction/registrar/oferta", {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => console.log("registrado"))
+            .catch(err => {
+                console.log(err);
+            });
+    };
+    
     var ofertar = function(){
+        registrartOferta();
         var evento = idsubasta;
         var usuario = "user";
         var cantidad = document.getElementById("cantidad").value;
         stompClient.send("/app/newsubasta."+ idsubasta, {}, JSON.stringify({cantidad:cantidad, idUsuario:usuario, idEvento:evento}));
     };
+    
     
     return{
         
