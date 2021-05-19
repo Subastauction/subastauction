@@ -13,11 +13,11 @@ var controlador = (function () {
         } else {
             return false;
         }
-    }
+    };
 
     function validarEmail(valor) {
         return /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(valor);
-    }
+    };
 
     var registrar = function () {
         document.getElementById("error").innerText = "";
@@ -59,15 +59,13 @@ var controlador = (function () {
 
     var validarDuplicados=function (email){
         var duplicado=false;
-        fetch('https://subastauction.herokuapp.com/subastauction/usuario/' + email)
+        fetch("https://subastauction.herokuapp.com/subastauction/usuario/" + email)
             .then(response => {
                 document.getElementById('error').innerText = "El usuario ya se encuentra registrado.";
             })
             .catch((err) => {duplicado=true});
         return duplicado;
-    }
-
-
+    };
 
     var crearEvento = function () {
 
@@ -101,9 +99,10 @@ var controlador = (function () {
     };
 
     var init = function () {
+        
         // Local: 'http://localhost:8080/subastauction/consultar/eventos'
         // Heroku: 'https://subastauction.herokuapp.com/subastauction/consultar/eventos'
-        fetch('https://subastauction.herokuapp.com/subastauction/consultar/eventos')
+        fetch("https://subastauction.herokuapp.com/subastauction/consultar/eventos")
             .then(response => response.json())
             .then(json => verEventos(json))
             .catch(err => {
@@ -121,14 +120,14 @@ var controlador = (function () {
         for (var i in json) {
             id = json[i].id;
             name = json[i].name;
-            description = json[i].description;
+            description = json[i].description.substring(0,20)+"...";
 
 
             var s = "<div class='col-lg-3 col-md-6 mb-4 mb-lg-0'>" +
-                "<div class='card rounded shadow-sm border-0'>" +
+                "<div class='card rounded shadow-sm border-0' style='margin-bottom: 20px;'>" +
                 "<div class='card-body p-4'>" +
-                "<img src='https://res.cloudinary.com/mhmd/image/upload/v1556485078/shoes-4_vgfjy9.jpg' alt='' class='img-fluid d-block mx-auto mb-3'>" +
-                "<h5>" + name + "</h5>" +
+                "<img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSB9uujpPCslO1UJ9UNIkVYpC3VUZSfpJrXdg&usqp=CAU' alt='' class='img-fluid d-block mx-auto mb-3'>" +
+                "<h5 class='card-title'>" + name + "</h5>" +
                 "<p class='small text-muted font-italic'>" + description + "</p>" +
                 "<input onclick=\"window.location='./evento.html?value=" + id + "';\"  type='button' value='ingresar'>" +
                 "</div>" +
@@ -140,37 +139,13 @@ var controlador = (function () {
 
     };
 
-    var getQuerystring = function (name) {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-            results = regex.exec(location.search);
-        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-    };
-
-    var initEvento = function () {
-        var value = getQuerystring('value');
-        // Local: 'http://localhost:8080/subastauction/consultar/eventos/'
-        // Heroku: 'https://subastauction.herokuapp.com/subastauction/consultar/eventos/'
-        fetch("https://subastauction.herokuapp.com/subastauction/consultar/eventos/" + value)
-            .then(response => response.json())
-            .then(json => verEvento(json))
-            .catch(err => {
-                console.log(err);
-            });
-    };
-
-    var verEvento = function (json) {
-        $("#nombre_evento").text(json.name);
-        $("#descripcion_evento").text(json.description);
-    };
-
     var password = function (json, contrasena) {
         if (json.password == contrasena) {
             location.href = "principal.html";
         } else {
             document.getElementById('pasw').innerText = "Contraseña incorrecta.";
         }
-    }
+    };
 
     var ingresar = function () {
         document.getElementById('pasw').innerText = "";
@@ -179,7 +154,7 @@ var controlador = (function () {
         if (validarEmail(usuario)) {
             // Local: 'http://localhost:8080/subastauction/consultar/eventos/'
             // Heroku: 'https://subastauction.herokuapp.com/subastauction/consultar/eventos/'
-            fetch('https://subastauction.herokuapp.com/subastauction/usuario/' + usuario)
+            fetch("https://subastauction.herokuapp.com/subastauction/usuario/" + usuario)
                 .then(response => response.json())
                 .then(json => password(json, contrasena))
                 .catch(err => {
@@ -189,20 +164,16 @@ var controlador = (function () {
         } else {
             document.getElementById("pasw").innerText = "Correo no valido.";
         }
-    }
+    };
 
     var error = function () {
         document.getElementById("pasw").innerText = "El usuario no existe.";
-    }
-
-
-
+    };
 
     return {
         registrar: registrar,
         crearEvento: crearEvento,
         init: init,
-        initEvento: initEvento,
         ingresar: ingresar
     };
 
