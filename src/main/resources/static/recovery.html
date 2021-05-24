@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/recovery.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    </link>
+</head>
+
+<body>
+    <section class="form-login">
+        <div id="app">
+            <h5>Recuperar Contraseña</h5>
+            
+            <p id="pasw" style="color: rgba(0, 255, 242, 0.466);font-weight: bold;align-content: center">Ingresa el correo del usuario a recuperar</p>
+            <div id="app">
+                <input id="texto" class="form-control" type="email" v-model="to_Email" placeholder="Correo" required>
+                </input>
+            </div>
+            <button @click="enviar" class="btn btn-success"> Correo de verificación</button>
+            <input onclick="window.location='./index.html';" class="buttons" type="button" value="Volver">
+
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js">
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+    <script src="https://cdn.emailjs.com/dist/email.min.js" type="text/javascript">
+    </script>
+    <script>
+        (function () {
+            emailjs.init("user_H3YpIkgO0spL4pyvafwv3");
+        })();
+        const vue = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    to_name: '',
+                    to_Email: '',
+                    message: '',
+                    subject: '',
+                }
+            },
+            methods: {
+                enviar() {
+                    let data = {
+                        to_name: 'Subastauction',
+                        to_Email: this.to_Email,
+                        message: 'No lo se we!',
+                        subject: ''
+                    };
+
+                    emailjs.send("gmail", "template_tp9z25l", data)
+                        .then(function (response) {
+                            if (response.text === 'OK') {
+                                alert('El correo se ha enviado de forma exitosa');
+                            }
+                            console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
+                        }, function (err) {
+                            alert('Ocurrió un problema al enviar el correo');
+                            console.log("FAILED. error=", err);
+                        });
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

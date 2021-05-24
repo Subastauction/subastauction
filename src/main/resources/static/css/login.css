@@ -10,8 +10,8 @@ body {
 }
 
 .form-login {
-  width: 400px;
-  height: 380px;
+  width: 440px;
+  height: 400px;
   background: #4e4d4d;
   margin: auto;
   margin-top: 180px;
@@ -24,8 +24,8 @@ body {
 .form-login h5 {
   margin: 0;
   text-align: center;
-  height: 40px;
-  margin-bottom: 30px;
+  height: 10 px;
+  margin-bottom: 0px;
   border-bottom: 1px solid;
   font-size: 20px;
 }
