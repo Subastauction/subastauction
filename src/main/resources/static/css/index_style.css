@@ -13,7 +13,20 @@ div#titulo{
 	width:100%;
 	margin-top:60px;
 }
-
+button{
+	height: 55px; 
+	padding-left: 5px;
+	padding-right: 5px;   
+	margin-bottom: 20px; 
+	margin-top: 10px;   
+	text-transform: uppercase;
+	background-color: #4644ab; 
+	border-color: #4644ab; 
+	border-style: solid; 
+	border-radius: 10px;  
+	width: 1200px;   
+	cursor: pointer;
+  }
 p#header{
 	text-align: center;
 	font-size: 2.5em;
@@ -25,7 +38,9 @@ h1#header{
 	font-size: 2.5em;
 	color:#000000;
 }
-
+p.hola{
+	color:white;
+}
 p#subheader{
 	text-align: center;
 	color:#cecece;
