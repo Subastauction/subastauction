@@ -6,32 +6,40 @@
   <title>Registrarse</title>
   <link rel="stylesheet" href="css/usuario.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.js"></script>
+  <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/read.js"></script>
+  <script src="js/user.js"></script>
+  <script type="text/javascript">
+        if(!UserModule.set()){
+            location.href = "index.html";
+        }
+  </script>
 </head>
 
-<body>
+<body onload="user.init()">
   <section class="form-login">
     <h5>Perfil</h5>
     <form>
       <div class="grafica1">
-        <img class="usuario" id="usuario" src="css/usuario.png"></img>
+        <img class="usuario" id="usuario" src="css/usuario.png">
         <canvas id="myChart" width="300" height="300" style="background-color: rgba(255, 255, 255, 0)"></canvas>
       </div>
       <div class="ordenar">
       <div>
-        <p class="inicio" id="nombre">Nombre:</p>
+        <p class="inicio">Nombre:</p>
         <p class="fin" id="nombre"></p>
       </div>
       <div>
-        <p class="inicio" id="correo">Correo:</p>
+        <p class="inicio">Correo:</p>
         <p class="fin" id="correo"></p>
       </div>
       <div>
-        <p class="inicio" id="telefono">Telefono:</p>
+        <p class="inicio">Telefono:</p>
         <p class="fin" id="telefono"></p>
       </div>
       <div>
-        <p class="inicio" id="fecha">Fecha de nacimiento:</p>
+        <p class="inicio">Fecha de nacimiento:</p>
         <p class="fin" id="fecha"></p>
       </div>
     </div>
