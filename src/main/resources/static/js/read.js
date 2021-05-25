@@ -3,6 +3,7 @@ var UserModule =  (function(){
     var telefono = null;
     var email = null;
     var fecha = null;
+    var idUsuario = null;
     
     var readCookie = function(name){
         return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + name.replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
@@ -17,6 +18,7 @@ var UserModule =  (function(){
             telefono = data.phone;
             email = data.email;
             fecha = data.date;
+            idUsuario = data.id;
             return true;
         }   
         return false;
@@ -42,6 +44,10 @@ var UserModule =  (function(){
         
         getFecha: function(){
             return fecha; 
+        },
+        
+        getIdUsuario: function(){
+            return idUsuario;
         }
         
     };

@@ -14,11 +14,27 @@
     <script src="js/socket.js"></script>
     <script src="js/read.js"></script>
     <script src="js/user.js"></script>
+    <script src="js/texto.js"></script>
     <script type="text/javascript">
         if(!UserModule.set()){
             location.href = "index.html";
         }
     </script>
+    
+    <style type="text/css">
+        #scroll1{
+            width:100%;
+            background: #ffffff;
+            direction: ltr; 
+        }
+    
+        #scroll1Frase{
+            font-style: italic;
+            font-weight: bold;
+            font-size: 20px;  
+            font-family: Arial, sans-serif;
+        }
+    </style>
     <title>Subastauction</title>
 
 </head>
@@ -40,6 +56,11 @@
                 <p id="descripcion_evento"></p>
             </div>
             <div class="col-md-6">
+                <div id="scroll1">
+                    <span id="scroll1Frase" >
+                        
+                    </span>
+                </div>
                 <table class="table table-hover table-bordered">
                     <thead>
                         <tr>

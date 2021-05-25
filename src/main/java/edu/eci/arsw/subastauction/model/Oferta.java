@@ -1,5 +1,6 @@
 package edu.eci.arsw.subastauction.model;
 
+import java.util.Date;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -12,12 +13,22 @@ public class Oferta {
     private int cantidad;
     private String idUsuario;
     private String idEvento;
+    private Date fecha;
 
-    public Oferta(String id, int cantidad, String idUsuario, String idEvento) {
+    public Oferta(String id, int cantidad, String idUsuario, String idEvento, Date fecha) {
         this.id = id;
         this.cantidad = cantidad;
         this.idUsuario = idUsuario;
         this.idEvento = idEvento;
+        this.fecha = fecha;
+    }
+    
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
     public String getId() {
@@ -54,8 +65,9 @@ public class Oferta {
 
     @Override
     public String toString() {
-        return "Oferta{" + "id=" + id + ", cantidad=" + cantidad + ", idUsuario=" + idUsuario + ", idEvento=" + idEvento + '}';
+        return "Oferta{" + "cantidad=" + cantidad + ", idUsuario=" + idUsuario + ", idEvento=" + idEvento + ", fecha=" + fecha + '}';
     }
+
     
     
 }

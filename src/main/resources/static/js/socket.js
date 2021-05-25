@@ -39,7 +39,7 @@ var socket = (function (){
             console.log('Connected: ' + frame);
             stompClient.subscribe('/topic/newsubasta.'+idsubasta, function (eventbody) {
                 var oferta = JSON.parse(eventbody.body);
-                console.log("Un usuario a ofertado"+ oferta);
+                $("#scroll1Frase").text(oferta.idUsuario + " ha ofertado " + oferta.cantidad);
             });
         });
     };
@@ -47,8 +47,10 @@ var socket = (function (){
     var registrartOferta = function(){
         var data = {};
         data.cantidad = document.getElementById("cantidad").value;
-        data.idUsuario = "User";
+        data.idUsuario = UserModule.getIdUsuario();
         data.idEvento = idsubasta;
+        var hoy = Date.now();
+        data.fecha = new Date(hoy);
         
         // Local: 'http://localhost:8080/subastauction/registrar/oferta'
         // Heroku: 'https://subastauction.herokuapp.com/subastauction/registrar/oferta'
@@ -70,10 +72,11 @@ var socket = (function (){
         var evento = idsubasta;
         var usuario = "user";
         var cantidad = document.getElementById("cantidad").value;
-        stompClient.send("/app/newsubasta."+ idsubasta, {}, JSON.stringify({cantidad:cantidad, idUsuario:usuario, idEvento:evento}));
+        TextModule.init();
+        stompClient.send("/app/newsubasta."+ idsubasta, {}, JSON.stringify({cantidad:cantidad, idUsuario:UserModule.getNombre(), idEvento:evento}));
+        
     };
-    
-    
+       
     return{
         
         init: function () {
