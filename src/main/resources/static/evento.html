@@ -12,7 +12,14 @@
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/socket.js"></script>
-    <title>Bootstrap 4, from LayoutIt!</title>
+    <script src="js/read.js"></script>
+    <script src="js/user.js"></script>
+    <script type="text/javascript">
+        if(!UserModule.set()){
+            location.href = "index.html";
+        }
+    </script>
+    <title>Subastauction</title>
 
 </head>
 

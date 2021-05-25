@@ -11,6 +11,7 @@ var socket = (function (){
     };
     
     var initEvento = function () {
+
         idsubasta = getQuerystring('value');
         // Local: 'http://localhost:8080/subastauction/consultar/eventos/'
         // Heroku: 'https://subastauction.herokuapp.com/subastauction/consultar/eventos/'
@@ -20,6 +21,7 @@ var socket = (function (){
             .catch(err => {
                 console.log(err);
             });
+        
     };
     
     var verEvento = function (json) {

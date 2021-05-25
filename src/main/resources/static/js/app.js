@@ -98,7 +98,7 @@ var controlador = (function () {
 
     };
 
-    var init = function () {
+    var init = function () { 
         
         // Local: 'http://localhost:8080/subastauction/consultar/eventos'
         // Heroku: 'https://subastauction.herokuapp.com/subastauction/consultar/eventos'
@@ -108,7 +108,7 @@ var controlador = (function () {
             .catch(err => {
                 console.log(err);
             });
-
+        
     };
 
     var verEventos = function (json) {
@@ -141,6 +141,7 @@ var controlador = (function () {
 
     var password = function (json, contrasena) {
         if (json.password == contrasena) {
+            document.cookie = "usuarioActual="+encodeURIComponent(JSON.stringify(json));
             location.href = "principal.html";
         } else {
             document.getElementById('pasw').innerText = "Contraseña incorrecta.";
@@ -169,12 +170,18 @@ var controlador = (function () {
     var error = function () {
         document.getElementById("pasw").innerText = "El usuario no existe.";
     };
+    
+    var cerrarSesion = function(){
+        document.cookie = "usuarioActual=; max-age=0";
+        location.href = "index.html";
+    };
 
     return {
         registrar: registrar,
         crearEvento: crearEvento,
         init: init,
-        ingresar: ingresar
+        ingresar: ingresar,
+        cerrarSesion: cerrarSesion
     };
 
 })();
