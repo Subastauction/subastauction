@@ -97,3 +97,40 @@ div.ordenar{
   margin-left: 300px;
   margin-top: 90px;
 }
+
+.container {
+
+  top: 550px;
+  left: 400px;
+  
+}
+
+table {
+  width: 840px;
+  border-collapse: collapse;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+th,
+td {
+  padding: 15px;
+  background-color: rgba(21, 130, 202, 0.253);
+  color: #fff;
+}
+
+th {
+  text-align: left;
+}
+
+thead 
+  th {
+      background-color: #55608f;
+  }
+
+
+tbody 
+  tr:hover {
+          background-color: rgba(255, 255, 255, 0.3);
+      }
+  
+
