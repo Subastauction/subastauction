@@ -44,10 +44,12 @@ var socket = (function (){
         //subscribe to /topic/TOPICXX when connections succeed
         stompClient.connect({}, function (frame) {
             console.log('Connected: ' + frame);
+            /*
             stompClient.subscribe('/topic/newsubasta.'+idsubasta, function (eventbody) {
                 var oferta = JSON.parse(eventbody.body);
                 $("#scroll1Frase").text(oferta.idUsuario + " ha ofertado " + oferta.cantidad);
             });
+             */
             stompClient.subscribe('/topic/alloffers.'+idsubasta, function (evt) {
                 var ofertas = JSON.parse(evt.body);
                 crearTabla(ofertas);
@@ -72,7 +74,7 @@ var socket = (function (){
             },
             body: JSON.stringify(data)
         })
-            .then(response => console.log("registrado"))
+            .then(response => obtenerOfertas())
             .catch(err => {
                 console.log(err);
             });
@@ -83,7 +85,12 @@ var socket = (function (){
         var evento = idsubasta;
         var cantidad = document.getElementById("cantidad").value;
         TextModule.init();
-        fetch("https://subastauction.herokuapp.com/subastauction/oferta/" + evento)
+        stompClient.send("/app/newsubasta."+ idsubasta, {}, JSON.stringify({cantidad:cantidad, idUsuario:UserModule.getNombre(), idEvento:evento}));
+
+    };
+
+    var obtenerOfertas= function (){
+        fetch("https://subastauction.herokuapp.com/subastauction/oferta/" + idsubasta)
             .then(response => response.json())
             .then(json => {
                 stompClient.send("/app/alloffers."+ idsubasta, {}, JSON.stringify(json.slice(0,4)));
@@ -91,9 +98,7 @@ var socket = (function (){
             .catch(err => {
                 console.log(err);
             });
-        //stompClient.send("/app/newsubasta."+ idsubasta, {}, JSON.stringify({cantidad:cantidad, idUsuario:UserModule.getNombre(), idEvento:evento}));
-
-    };
+    }
 
     var crearTabla = function(json){
 
