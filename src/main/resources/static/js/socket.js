@@ -86,12 +86,12 @@ var socket = (function (){
         fetch("https://subastauction.herokuapp.com/subastauction/oferta/" + evento)
             .then(response => response.json())
             .then(json => {
-                stompClient.send("/app/alloffers."+ idsubasta, {}, JSON.stringify(json));
+                stompClient.send("/app/alloffers."+ idsubasta, {}, JSON.stringify(json.slice(0,4)));
             })
             .catch(err => {
                 console.log(err);
             });
-        stompClient.send("/app/newsubasta."+ idsubasta, {}, JSON.stringify({cantidad:cantidad, idUsuario:UserModule.getNombre(), idEvento:evento}));
+        //stompClient.send("/app/newsubasta."+ idsubasta, {}, JSON.stringify({cantidad:cantidad, idUsuario:UserModule.getNombre(), idEvento:evento}));
 
     };
 
