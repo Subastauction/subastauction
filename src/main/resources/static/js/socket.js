@@ -79,7 +79,7 @@ var socket = (function (){
                 });
         }
         else{
-            console.log("La oferta no supera a la oferta inicial.");
+            console.log("La oferta no supera a la oferta minima.");
         }
     };
 
