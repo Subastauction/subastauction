@@ -93,7 +93,7 @@ var controlador = (function () {
             },
             body: JSON.stringify(data)
         })
-            .then(response => console.log("registrado"))
+            .then(response => location.href="./principal.html")
             .catch(err => {
                 console.log(err);
             });

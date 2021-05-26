@@ -2,7 +2,7 @@ var socket = (function (){
     
     var stompClient = null;
     var idsubasta = null;
-    
+    var ofertaInicial;
     var getQuerystring = function (name) {
         name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
@@ -34,6 +34,7 @@ var socket = (function (){
     var verEvento = function (json) {
         $("#nombre_evento").text(json.name);
         $("#descripcion_evento").text(json.description);
+        ofertaInicial=json.initialOffer;
     };
     
     var connectAndSubscribe = function () {
@@ -63,20 +64,24 @@ var socket = (function (){
         data.idEvento = idsubasta;
         var hoy = Date.now();
         data.fecha = new Date(hoy);
-        
-        // Local: 'http://localhost:8080/subastauction/registrar/oferta'
-        // Heroku: 'https://subastauction.herokuapp.com/subastauction/registrar/oferta'
-        fetch("https://subastauction.herokuapp.com/subastauction/registrar/oferta", {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json"
-            },
-            body: JSON.stringify(data)
-        })
-            .then(response => obtenerOfertas())
-            .catch(err => {
-                console.log(err);
-            });
+        if(ofertaInicial<=data.cantidad) {
+            // Local: 'http://localhost:8080/subastauction/registrar/oferta'
+            // Heroku: 'https://subastauction.herokuapp.com/subastauction/registrar/oferta'
+            fetch("https://subastauction.herokuapp.com/subastauction/registrar/oferta", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => obtenerOfertas())
+                .catch(err => {
+                    console.log(err);
+                });
+        }
+        else{
+            console.log("La oferta no supera a la oferta inicial.");
+        }
     };
     
     var ofertar = function(){

@@ -5,12 +5,15 @@
  */
 package edu.eci.arsw.subastauction.service;
 
+import edu.eci.arsw.subastauction.cache.SubastauctionCache;
 import edu.eci.arsw.subastauction.model.Evento;
 import edu.eci.arsw.subastauction.model.Oferta;
 import edu.eci.arsw.subastauction.model.Usuario;
 import edu.eci.arsw.subastauction.persistence.EventoRepository;
 import edu.eci.arsw.subastauction.persistence.OfertaRepository;
 import edu.eci.arsw.subastauction.persistence.UsuarioRepository;
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +21,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SubastauctionService {
-    
+
+    @Autowired
+    SubastauctionCache sbCache;
+
     @Autowired
     UsuarioRepository usuarioRepository;
     
@@ -33,11 +39,15 @@ public class SubastauctionService {
     }
     
     public void agregarEvento(Evento evento){
-        eventoRepository.save(evento);
+        Evento evt=eventoRepository.save(evento);
+        sbCache.agregarEvento(evt);
     }
     
     public List<Evento> consultarEventos(){
-        return eventoRepository.findAll();
+        if(!sbCache.hayCache()){
+            sbCache.agregarEventos(eventoRepository.findAll());
+        }
+        return sbCache.devolverCache();
     }
     
     public Usuario findByEmail(String email) throws ServiceNotFoundException{
@@ -50,11 +60,17 @@ public class SubastauctionService {
     }
     
     public Evento findEventById(String id) throws ServiceNotFoundException{
-        Optional<Evento> evento = eventoRepository.findById(id);
-        if(evento.isPresent()){
-            return evento.get();
-        } else {
-            throw new ServiceNotFoundException("Not found evento");
+        if(sbCache.hayEvento(id)){
+            return sbCache.devolverEvento(id);
+        }
+        else {
+            Optional<Evento> evento = eventoRepository.findById(id);
+            if (evento.isPresent()) {
+                sbCache.agregarEvento(evento.get());
+                return sbCache.devolverEvento(id);
+            } else {
+                throw new ServiceNotFoundException("Not found evento");
+            }
         }
         
     }
