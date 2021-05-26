@@ -8,7 +8,12 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EventoRepository extends MongoRepository<Evento, String>{
-    
-    public List<Evento> findByUsuario(String usuario);
+
+    /**
+     * Busca los eventos por el usuario relacionado.
+     * @param usuario el usuario relacionado
+     * @return devuelve la lista de eventos relacionados al usuario.
+     */
+    List<Evento> findByUsuario(String usuario);
     
 }

@@ -10,5 +10,11 @@ import java.util.List;
 
 @Repository
 public interface OfertaRepository extends MongoRepository<Oferta, String>{
-    public List<Oferta> findAllByIdEventoOrderByCantidadDesc(String idEvento);
+
+    /**
+     * Busca todas las ofertas relacionadas al id del evento ordenadas por sus cantidades descendentemente.
+     * @param idEvento id del evento relacionado.
+     * @return lista de ofertas relacionadas.
+     */
+    List<Oferta> findAllByIdEventoOrderByCantidadDesc(String idEvento);
 }

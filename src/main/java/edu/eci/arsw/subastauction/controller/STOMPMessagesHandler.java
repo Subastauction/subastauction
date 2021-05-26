@@ -11,22 +11,20 @@ import java.util.List;
 
 @Controller
 public class STOMPMessagesHandler {
-    
+
     @Autowired
     SimpMessagingTemplate msgt;
-    
+
     @MessageMapping("/newsubasta.{numero}")
-    public void handleNewSubasta(Oferta of, @DestinationVariable String numero) throws Exception {
+    public void handleNewSubasta(Oferta of, @DestinationVariable String numero) {
         System.out.println("Nuevo usuario en el servidor!:" + of);
         msgt.convertAndSend("/topic/newsubasta."+numero, of);
-
     }
 
     @MessageMapping("/alloffers.{numero}")
-    public void handleAllOffers(List<Oferta> of, @DestinationVariable String numero) throws Exception {
+    public void handleAllOffers(List<Oferta> of, @DestinationVariable String numero) {
         System.out.println("Nuevo usuario en el servidor!:" + of);
         msgt.convertAndSend("/topic/alloffers."+numero, of);
-
     }
     
 }

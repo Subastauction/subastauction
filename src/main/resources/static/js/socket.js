@@ -47,7 +47,6 @@ var socket = (function (){
             console.log('Connected: ' + frame);
             stompClient.subscribe('/topic/newsubasta.'+idsubasta, function (eventbody) {
                 var oferta = JSON.parse(eventbody.body);
-                $("#scroll1Frase").text("");
                 $("#scroll1Frase").text(oferta.idUsuario + " ha ofertado " + oferta.cantidad);
             });
             stompClient.subscribe('/topic/alloffers.'+idsubasta, function (evt) {
@@ -57,7 +56,7 @@ var socket = (function (){
         });
     };
     
-    var registrartOferta = function(){
+    var ofertar = function(){
         var data = {};
         data.cantidad = document.getElementById("cantidad").value;
         data.idUsuario = UserModule.getNombre();
@@ -83,21 +82,13 @@ var socket = (function (){
             console.log("La oferta no supera a la oferta inicial.");
         }
     };
-    
-    var ofertar = function(){
-        registrartOferta();
-        var evento = idsubasta;
-        var cantidad = document.getElementById("cantidad").value;
-        TextModule.init();
-        stompClient.send("/app/newsubasta."+ idsubasta, {}, JSON.stringify({cantidad:cantidad, idUsuario:UserModule.getNombre(), idEvento:evento}));
-
-    };
 
     var obtenerOfertas= function (){
         fetch("https://subastauction.herokuapp.com/subastauction/oferta/" + idsubasta)
             .then(response => response.json())
             .then(json => {
                 stompClient.send("/app/alloffers."+ idsubasta, {}, JSON.stringify(json.slice(0,4)));
+                stompClient.send("/app/newsubasta."+ idsubasta, {}, JSON.stringify({cantidad:document.getElementById("cantidad").value, idUsuario:UserModule.getNombre(), idEvento:idsubasta}));
             })
             .catch(err => {
                 console.log(err);
@@ -120,7 +111,7 @@ var socket = (function (){
         
         init: function () {
             initEvento();
-     
+            TextModule.init();
             //websocket connection
             connectAndSubscribe();
         },
