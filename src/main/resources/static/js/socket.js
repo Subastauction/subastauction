@@ -44,12 +44,11 @@ var socket = (function (){
         //subscribe to /topic/TOPICXX when connections succeed
         stompClient.connect({}, function (frame) {
             console.log('Connected: ' + frame);
-            /*
             stompClient.subscribe('/topic/newsubasta.'+idsubasta, function (eventbody) {
                 var oferta = JSON.parse(eventbody.body);
+                $("#scroll1Frase").text("");
                 $("#scroll1Frase").text(oferta.idUsuario + " ha ofertado " + oferta.cantidad);
             });
-             */
             stompClient.subscribe('/topic/alloffers.'+idsubasta, function (evt) {
                 var ofertas = JSON.parse(evt.body);
                 crearTabla(ofertas);
