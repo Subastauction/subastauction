@@ -96,7 +96,7 @@ var socket = (function (){
     }
 
     var crearTabla = function(json){
-
+        ofertaInicial=json[0].cantidad;
         var trs = [[document.getElementById("name1"),document.getElementById("fecha1"),document.getElementById("val1")],[document.getElementById("name2"),document.getElementById("fecha2"),document.getElementById("val2")],[document.getElementById("name3"),document.getElementById("fecha3"),document.getElementById("val3")],[document.getElementById("name4"),document.getElementById("fecha4"),document.getElementById("val4")]];
         let i=0;
         while (i<json.length && i<trs.length){
