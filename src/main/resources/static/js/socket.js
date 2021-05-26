@@ -100,8 +100,6 @@ var socket = (function (){
         var trs = [[document.getElementById("name1"),document.getElementById("fecha1"),document.getElementById("val1")],[document.getElementById("name2"),document.getElementById("fecha2"),document.getElementById("val2")],[document.getElementById("name3"),document.getElementById("fecha3"),document.getElementById("val3")],[document.getElementById("name4"),document.getElementById("fecha4"),document.getElementById("val4")]];
         let i=0;
         while (i<json.length && i<trs.length){
-            trs[i][0].innerText= `
-                    <td>${i+1}</td>`;
             fetch("https://subastauction.herokuapp.com/subastauction/usuarioId/" + json[i].idUsuario)
                 .then(response => response.json())
                 .then(json1 => {
