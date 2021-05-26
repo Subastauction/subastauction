@@ -125,7 +125,7 @@ var controlador = (function () {
 
             var s = "<div class='col-lg-3 col-md-6 mb-4 mb-lg-0'  >" +
                 "<div class='card rounded shadow-sm border-0' style='margin-bottom: 40px;'>" +
-                "<div class='card-body p-4' style='background: #66c1e6;'>" +
+                "<div class='card-body p-4' >" +
                 "<img src='css/sub.png' alt='' class='img-fluid d-block mx-auto mb-3'>" +
                 "<h5 class='card-title'>" + name + "</h5>" +
                 "<p class='small text-muted font-italic'>" + description + "</p>" +
