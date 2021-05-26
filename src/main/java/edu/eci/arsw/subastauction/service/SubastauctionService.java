@@ -58,6 +58,11 @@ public class SubastauctionService {
         }
         
     }
+    
+    public List<Evento> findEventByUsuario(String usuario) throws ServiceNotFoundException{
+        List<Evento> eventos = eventoRepository.findByUsuario(usuario);
+         return eventos;
+    }
 
     public void registrarOferta(Oferta newOffer) {
         ofertaRepository.save(newOffer);

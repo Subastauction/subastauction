@@ -20,14 +20,16 @@ public class Evento {
     private Date startDate;
     private Date endDate;
     private int initialOffer;
+    private String usuario;
 
-    public Evento(String id, String name, String description, Date startDate, Date endDate, int initialOffer) {
+    public Evento(String id, String name, String description, Date startDate, Date endDate, int initialOffer, String usuario) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
         this.initialOffer = initialOffer;
+        this.usuario = usuario;
     }
 
     public String getId() {
@@ -77,6 +79,14 @@ public class Evento {
 
     public void setInitialOffer(int initialOffer) {
         this.initialOffer = initialOffer;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario){
+        this.usuario = usuario;
     }
     
 }

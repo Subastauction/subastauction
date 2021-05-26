@@ -74,6 +74,7 @@ var controlador = (function () {
         var fechaInicio = document.getElementById("fechaInicio").value;
         var fechaFin = document.getElementById("fechaFin").value;
         var ofertaInicial = document.getElementById("ofertaInicial").value;
+        var idUsuario = UserModule.getIdUsuario();
 
         var data = {};
         data.name = nombre;
@@ -81,6 +82,7 @@ var controlador = (function () {
         data.startDate = fechaInicio;
         data.endDate = fechaFin;
         data.initialOffer = ofertaInicial;
+        data.usuario = idUsuario;
 
         // Local: 'http://localhost:8080/subastauction/crear/evento'
         // Heroku: 'https://subastauction.herokuapp.com/subastauction/crear/evento'

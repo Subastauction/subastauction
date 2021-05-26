@@ -9,6 +9,7 @@ import edu.eci.arsw.subastauction.model.Evento;
 import edu.eci.arsw.subastauction.model.Oferta;
 import edu.eci.arsw.subastauction.model.Usuario;
 import edu.eci.arsw.subastauction.service.SubastauctionService;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -69,7 +70,19 @@ public class SubastauctionAPIController {
     @RequestMapping(value="/consultar/eventos/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getEventById(@PathVariable("id") String id){
         try {
-            return new ResponseEntity<>(service.findEventById(id),HttpStatus.ACCEPTED);
+            Evento evento = service.findEventById(id);
+            return new ResponseEntity<>(evento,HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            Logger.getLogger(SubastauctionAPIController.class.getName()).log(Level.SEVERE, null, e);
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+        }
+    }
+    
+    @RequestMapping(value="/consultar/eventos/usuario/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getEventsById(@PathVariable("id") String id){
+        try {
+            List<Evento> eventos = service.findEventByUsuario(id);
+            return new ResponseEntity<>(eventos,HttpStatus.ACCEPTED);
         } catch (Exception e) {
             Logger.getLogger(SubastauctionAPIController.class.getName()).log(Level.SEVERE, null, e);
             return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
