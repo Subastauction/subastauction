@@ -8,6 +8,14 @@
 *  Vanegas Trujillo Janer Stiven.
 *  Varon Rojas Daniel Alejandro.
 
+## Resumen
+
+Subastauction es una pagina web dedicada al comercio mediante subastas totalmente virtual y en tiempo real con cientos de productos para ofertar.
+
+## Descripción 
+
+Solucionamos los problemas referentes a venta de objetos en subastas, sean de colección o no esto nos permite llevar los artículos de nuestros clientes de diferentes lugares a una plataforma mas cómoda y optima para su venta.
+
 ## Despliegue en Heroku ☁️:
 
 [![Deployed to Heroku](https://www.herokucdn.com/deploy/button.png)](https://subastauction.herokuapp.com)
