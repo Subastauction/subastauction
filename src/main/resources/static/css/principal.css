@@ -74,7 +74,7 @@ a[href]:after {
 
 .menu__toggle:checked ~ .menu__toggle-label {
   background: rgb(0, 8, 95);
-  height: 100vh;
+  height: 150vh;
   left: 0;
   position: fixed;
   z-index: 2;
