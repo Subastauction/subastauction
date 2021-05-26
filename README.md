@@ -8,9 +8,15 @@
 *  Vanegas Trujillo Janer Stiven.
 *  Varon Rojas Daniel Alejandro.
 
+## Despliegue en Heroku ☁️:
+
 [![Deployed to Heroku](https://www.herokucdn.com/deploy/button.png)](https://subastauction.herokuapp.com)
 
+## Despliegue en CircleCi✔️:
+
 [![CircleCI](https://circleci.com/gh/Subastauction/subastauction.svg?style=svg)](https://circleci.com/gh/Subastauction/subastauction)
+
+## Despliegue en Codacy:
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/14d19e309e6f4cbbb53f1f09c7872b8a)](https://www.codacy.com/gh/Subastauction/subastauction/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Subastauction/subastauction&amp;utm_campaign=Badge_Grade)
 
