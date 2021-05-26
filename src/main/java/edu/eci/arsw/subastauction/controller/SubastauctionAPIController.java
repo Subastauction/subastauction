@@ -98,6 +98,16 @@ public class SubastauctionAPIController {
             return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
         }
     }
+
+    @RequestMapping(value="/usuarioId/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getUserById(@PathVariable("id") String id ){
+        try {
+            return new ResponseEntity<>(service.findById(id),HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            Logger.getLogger(SubastauctionAPIController.class.getName()).log(Level.SEVERE, null, e);
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+        }
+    }
     
     @RequestMapping(value="/registrar/oferta", method = RequestMethod.POST)	
     public ResponseEntity<?> addNewOffer(@RequestBody Oferta newOffer){
@@ -109,6 +119,16 @@ public class SubastauctionAPIController {
             Logger.getLogger(SubastauctionAPIController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>(ex.getMessage(),HttpStatus.FORBIDDEN);            
         }        
+    }
+
+    @RequestMapping(value="/oferta/{idEvento}", method = RequestMethod.GET)
+    public ResponseEntity<?> getOfertasByIdEvento(@PathVariable("idEvento") String idEvento ){
+        try {
+            return new ResponseEntity<>(service.getOfertasByIdEvento(idEvento),HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            Logger.getLogger(SubastauctionAPIController.class.getName()).log(Level.SEVERE, null, e);
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+        }
     }
 
 }

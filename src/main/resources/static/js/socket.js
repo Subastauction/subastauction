@@ -21,7 +21,14 @@ var socket = (function (){
             .catch(err => {
                 console.log(err);
             });
-        
+
+        fetch("https://subastauction.herokuapp.com/subastauction/oferta/" + idsubasta)
+            .then(response => response.json())
+            .then(json => crearTabla(json))
+            .catch(err => {
+                console.log(err);
+            });
+
     };
     
     var verEvento = function (json) {
@@ -70,12 +77,41 @@ var socket = (function (){
     var ofertar = function(){
         registrartOferta();
         var evento = idsubasta;
-        var usuario = "user";
         var cantidad = document.getElementById("cantidad").value;
         TextModule.init();
+        fetch("https://subastauction.herokuapp.com/subastauction/oferta/" + evento)
+            .then(response => response.json())
+            .then(json => crearTabla(json))
+            .catch(err => {
+                console.log(err);
+            });
         stompClient.send("/app/newsubasta."+ idsubasta, {}, JSON.stringify({cantidad:cantidad, idUsuario:UserModule.getNombre(), idEvento:evento}));
-        
+
     };
+
+    var crearTabla = function(json){
+
+        var trs = [document.getElementById("first"),document.getElementById("sec"),document.getElementById("trd"),document.getElementById("lst")];
+        let i=0;
+        while (i<json.length && i<4){
+            trs[i].innerText= `
+                    <td>${i+1}</td>`;
+            fetch("https://subastauction.herokuapp.com/subastauction/usuarioId/" + json[i].idUsuario)
+                .then(response => response.json())
+                .then(json1 => {
+                    trs[i].innerText+= `
+                    <td>${json1.name}</td>`;
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+            trs[i].innerText+= `
+                    <td>${json[i].fecha}</td>
+                    <td>${json[i].cantidad}</td>
+                    `;
+            i++;
+        }
+    }
        
     return{
         

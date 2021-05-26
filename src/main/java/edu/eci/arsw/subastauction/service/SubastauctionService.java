@@ -64,8 +64,29 @@ public class SubastauctionService {
          return eventos;
     }
 
-    public void registrarOferta(Oferta newOffer) {
-        ofertaRepository.save(newOffer);
+    public void registrarOferta(Oferta newOffer) throws Exception {
+
+        List<Oferta> ofertas= ofertaRepository.findAllByIdEventoOrderByCantidadDesc(newOffer.getIdEvento());
+        if(ofertas.get(0).getCantidad()< newOffer.getCantidad()) {
+            ofertaRepository.save(newOffer);
+        }
+        else{
+            throw new Exception("La oferta debe ser mayor a la maxima oferta registrada.");
+        }
     }
-    
+
+    public List<Oferta> getOfertasByIdEvento(String idEvento) throws Exception {
+        List<Oferta> ofertas=ofertaRepository.findAllByIdEventoOrderByCantidadDesc(idEvento);
+        if(ofertas.size()==0) throw new Exception("No hay ofertas.");
+        return ofertas;
+    }
+
+    public Usuario findById(String id) throws ServiceNotFoundException {
+        Optional<Usuario> usuario=usuarioRepository.findById(id);
+        if(usuario.isPresent()){
+            return usuario.get();
+        } else {
+            throw new ServiceNotFoundException("Not found usuario");
+        }
+    }
 }
