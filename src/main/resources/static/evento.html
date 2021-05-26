@@ -43,13 +43,19 @@
             font-family: Arial, sans-serif;
         }
 
-        .buttons {
-            width: 100%;
-            height: 40px;
-            background: #017bab;
-            border: none;
-            color: white;
-            margin-bottom: 16px;
+        button {
+            height: 55px;
+            padding-left: 5px;
+            padding-right: 5px;
+            margin-bottom: 20px;
+            margin-top: 10px;
+            text-transform: uppercase;
+            background-color: #4644ab;
+            border-color: #4644ab;
+            border-style: solid;
+            border-radius: 10px;
+            width: 900px;
+            cursor: pointer;
         }
 
         h3 p {
@@ -170,7 +176,9 @@
             </div>
         </div>
     </div>
-    <input class="buttons" type="button" value="Volver" onclick="window.location='./principal.html';">
+    <button type="submit" name="volver" id="volver" onclick="window.location='./principal.html'">
+        <p class="hola">Volver</p>
+    </button>
 </body>
 
 </html>
