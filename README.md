@@ -180,6 +180,25 @@ Durante el se desarrollo de este Sprint se logro lo siguiente:
 * Implementacion de cache
 * Implementacion web socket
 
+### Historias de Usuario
+
+[![](https://upload.wikimedia.org/wikipedia/commons/7/7a/Trello-logo-blue.svg)](https://trello.com/b/1cNrH5qv/subastauction)
+
+### MockUps
+
+[![](https://mockingbot.com/images/logo-full.png)](https://mockingbot.com/app/oe3aqszkwakl8uvtkgbvcrzrhpx0q)
+
+### Diagrama de Casos de Uso
+
+![Diagrama Casos de Uso](https://github.com/Subastauction/subastauction/blob/main/desing/img/casosdeuso.PNG)
+
+### Diagrama Entidad-Relación
+
+![Diagrama Entidad-Relacion](https://github.com/Subastauction/subastauction/blob/main/desing/img/entidad-relacion.PNG)
+
+### Diagrama Componentes
+
+![Componentes](https://github.com/Subastauction/subastauction/blob/main/desing/img/componentes.PNG)
 
 
 
