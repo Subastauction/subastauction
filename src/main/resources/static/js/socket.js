@@ -63,7 +63,7 @@ var socket = (function (){
         data.idEvento = idsubasta;
         var hoy = Date.now();
         data.fecha = new Date(hoy);
-        if(ofertaInicial<=data.cantidad) {
+        if(ofertaInicial<data.cantidad) {
             // Local: 'http://localhost:8080/subastauction/registrar/oferta'
             // Heroku: 'https://subastauction.herokuapp.com/subastauction/registrar/oferta'
             fetch("https://subastauction.herokuapp.com/subastauction/registrar/oferta", {
