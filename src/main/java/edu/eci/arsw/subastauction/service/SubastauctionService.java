@@ -67,7 +67,10 @@ public class SubastauctionService {
     public void registrarOferta(Oferta newOffer) throws Exception {
 
         List<Oferta> ofertas= ofertaRepository.findAllByIdEventoOrderByCantidadDesc(newOffer.getIdEvento());
-        if(ofertas.get(0).getCantidad()< newOffer.getCantidad()) {
+        if(ofertas.size()==0){
+            ofertaRepository.save(newOffer);
+        }
+        else if(ofertas.get(0).getCantidad()< newOffer.getCantidad()) {
             ofertaRepository.save(newOffer);
         }
         else{
