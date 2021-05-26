@@ -7,6 +7,8 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
+import java.util.List;
+
 @Controller
 public class STOMPMessagesHandler {
     
@@ -14,9 +16,16 @@ public class STOMPMessagesHandler {
     SimpMessagingTemplate msgt;
     
     @MessageMapping("/newsubasta.{numero}")
-    public void handlePointEvent(Oferta of, @DestinationVariable String numero) throws Exception {
+    public void handleNewSubasta(Oferta of, @DestinationVariable String numero) throws Exception {
         System.out.println("Nuevo usuario en el servidor!:" + of);
         msgt.convertAndSend("/topic/newsubasta."+numero, of);
+
+    }
+
+    @MessageMapping("/alloffers.{numero}")
+    public void handleAllOffers(List<Oferta> of, @DestinationVariable String numero) throws Exception {
+        System.out.println("Nuevo usuario en el servidor!:" + of);
+        msgt.convertAndSend("/topic/alloffers."+numero, of);
 
     }
     

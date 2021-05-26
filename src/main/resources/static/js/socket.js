@@ -48,6 +48,10 @@ var socket = (function (){
                 var oferta = JSON.parse(eventbody.body);
                 $("#scroll1Frase").text(oferta.idUsuario + " ha ofertado " + oferta.cantidad);
             });
+            stompClient.subscribe('/topic/alloffers.'+idsubasta, function (evt) {
+                var ofertas = JSON.parse(evt.body);
+                crearTabla(ofertas);
+            });
         });
     };
     
@@ -81,7 +85,9 @@ var socket = (function (){
         TextModule.init();
         fetch("https://subastauction.herokuapp.com/subastauction/oferta/" + evento)
             .then(response => response.json())
-            .then(json => crearTabla(json))
+            .then(json => {
+                stompClient.send("/app/alloffers."+ idsubasta, {}, JSON.stringify(json));
+            })
             .catch(err => {
                 console.log(err);
             });
@@ -91,24 +97,21 @@ var socket = (function (){
 
     var crearTabla = function(json){
 
-        var trs = [document.getElementById("first"),document.getElementById("sec"),document.getElementById("trd"),document.getElementById("lst")];
+        var trs = [[document.getElementById("name1"),document.getElementById("fecha1"),document.getElementById("val1")],[document.getElementById("name2"),document.getElementById("fecha2"),document.getElementById("val2")],[document.getElementById("name3"),document.getElementById("fecha3"),document.getElementById("val3")],[document.getElementById("name4"),document.getElementById("fecha4"),document.getElementById("val4")]];
         let i=0;
-        while (i<json.length && i<4){
-            trs[i].innerText= `
+        while (i<json.length && i<trs.length){
+            trs[i][0].innerText= `
                     <td>${i+1}</td>`;
             fetch("https://subastauction.herokuapp.com/subastauction/usuarioId/" + json[i].idUsuario)
                 .then(response => response.json())
                 .then(json1 => {
-                    trs[i].innerText+= `
-                    <td>${json1.name}</td>`;
+                    trs[i][0].innerText=json1.name;
                 })
                 .catch(err => {
                     console.log(err);
                 });
-            trs[i].innerText+= `
-                    <td>${json[i].fecha}</td>
-                    <td>${json[i].cantidad}</td>
-                    `;
+            trs[i][1].innerText=json[i].fecha;
+            trs[i][2].innerText=json[i].cantidad;
             i++;
         }
     }
