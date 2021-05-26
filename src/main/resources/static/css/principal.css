@@ -79,7 +79,7 @@ a[href]:after {
   position: fixed;
   z-index: 2;
   top: 0;
-  transition: background 0.15s;
+  transition:  0.15s;
   width: 17.5vw;
 }
 
