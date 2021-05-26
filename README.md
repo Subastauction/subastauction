@@ -146,6 +146,40 @@ En el apartado de E-mail encontraremos un formulario donde redactaremos nuestros
 
 ----------
 
+## Trello
+
+![img](img/trello.PNG)
+
+### SPRINT 1
+
+Durante el desarrollo de este Sprint se definio lo siguiente:
+
+* Estimaciones de carga.
+* Historias de usuario.
+* Diagrama de casos de uso.
+* Diagrama de componentes.
+
+Puede obtener mas informacion de los anteriores puntos en la Wiki de este repositorio.
+
+### SPRINT 2 
+
+Durante el desarrollo de este sprint se lograron las siguientes funcionalidades:
+
+* Registro y login de usuario.
+* Creación de eventos de subastas.
+* Vista principal de eventos.
+
+### SPRINT 3
+
+Durante el se desarrollo de este Sprint se logro lo siguiente:
+
+* Correciones de funcionalidades en el Sprint 2.
+* Vista perfil de usuario.
+* Vista subastas de usuario.
+* Vistas contacto, soporte.
+* Implementacion de cache
+* Implementacion web socket
+
 
 
 
